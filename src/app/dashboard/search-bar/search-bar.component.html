@@ -1,0 +1,15 @@
+<form class="d-flex mt-3" role="search" [formGroup]="searchForm">
+    <div class="input-group mx-1">
+      <input class="form-control me-2 py-2" type="search" formControlName="searchInput" 
+        placeholder="Find your word" aria-label="Search"/>
+      <div class="input-group-append">
+        <button [disabled]="searchForm.value.searchInput == null || searchForm.value.searchInput == ''" 
+          class="btn btn-primary py-2 px-4" type="button" (click)="findWord()">Search
+        </button>
+      </div>
+    </div>
+    <button class="btn btn-outline-dark py-2" (click)="refresh()" type="button">&#x27F3;</button>
+</form>
+<div *ngIf="displayErrorText" class="error-text px-3">
+   <i class="fa fa-exclamation-circle"></i> Please enter valid input (avoid any numeric value or special characters)
+</div>
