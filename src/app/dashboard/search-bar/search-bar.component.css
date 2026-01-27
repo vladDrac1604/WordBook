@@ -1,0 +1,8 @@
+.error-text {
+  color: #dc3545;           /* Bootstrap danger color */
+  font-size: 0.875rem;      /* Slightly smaller */
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

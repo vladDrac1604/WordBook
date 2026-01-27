@@ -1,0 +1,26 @@
+<div *ngIf="data.status !== 'ERROR'">
+    <h1>Word Of The Day</h1>
+    <hr>
+    <h2 mat-dialog-title>{{ word }}<span class="note" *ngIf="note">({{ note }})</span></h2>
+    <mat-dialog-content>
+        <ul>
+            <li *ngFor="let item of definitions" class="mt-2">{{ item.text }}</li>
+        </ul>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="btn btn-outline-danger" mat-dialog-close>Cancel</button>
+        <button class="btn btn-outline-primary mx-2" (click)="addWordOfTheDayIntoDictionary()" mat-dialog-close>Add this
+            word ?</button>
+    </mat-dialog-actions>
+</div>
+<div *ngIf="data.status === 'ERROR'">
+    <div class="card position-relative">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>FAILURE</span>
+            <button type="button" class="btn-close" aria-label="Close" (click)="onNoClick()"></button>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ data.value.errorCode }} - {{ data.value.errorMsg }}</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="grid" *ngIf="randomWords.length > 0">
+                <div *ngFor="let singleWord of randomWords; let i = index" class="box" [class.flipped]="flipTracker[i]">
+                    <div class="action-buttons">
+                        <button class="action-btn add-btn" matTooltip="add this word" (click)="addWord(i, singleWord.word)">+</button>
+                        <button matTooltip="rotate card" class="action-btn rotate-btn" (click)="toggleFlip(i, singleWord.word)">↻</button>
+                    </div>
+                    <div class="box-inner">
+                        <div class="box-front">
+                            {{ sharedService.capitalizeSentence(singleWord.word) }}
+                        </div>
+                        <div class="box-back">
+                            <ul class="mt-4 mb-1 px-3">
+                                <li *ngFor="let definition of definitions[i]">
+                                    {{ definition | removexmltags }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <mat-icon>info</mat-icon> <strong class="me-auto">Message</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ toastMessage }}
+            </div>
+        </div>
+    </div>
+</div>
